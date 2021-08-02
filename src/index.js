@@ -13,13 +13,12 @@ app.get("/users", (req,res) => {
 
 app.get("/users/:id", (req,res) => {
     const user = users.find(item => item.id == req.params.id);
-    res.json(user);1
+    res.json(user);
 })
 
 app.post("/users", (req,res)=>{
     users.push({id:0});
     res.json(users);
-    res.send('El usuario se ha creado');
 })
 
 app.listen(3000, ()=>{
