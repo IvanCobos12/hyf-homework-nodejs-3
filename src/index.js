@@ -25,23 +25,30 @@ app.post("/user", (req,res)=>{
 app.delete("/user/:id", (req,res)=>{
     const id = req.params.id;
 
-    users.filter( (elem,index) => {
+
+    if(users.length > 0){
+
+        index = users.indexOf(id);
+        users.splice(index,1);
+        res.status(202).json(users);
+    }
+    else{
+        res.status(204).json(users);
+    }
+    // users.filter( (elem,index) => {
         
 
-        if(elem.id == id){
+    //     if(elem.id == id){
 
-            users.splice(index, 1);
+    //         users.splice(index, 1);
 
-            res.status(202);
+    //         res.status(202).json(users)
+    //     }
+    //     else{
+    //         res.status(204).json(users);
+    //     }   
+    // });
     
-            res.send(users);
-        }
-        else{
-            res.send('User not found');
-            res.status(204);
-        }
-        
-    });
 });
 
 app.listen(3000, ()=>{
